@@ -1,0 +1,22 @@
+extends layout
+
+block header
+  include header.jade
+
+block content
+    h1= title
+    p Welcome to my NDA application
+
+    .well
+        form#ndaform(method="POST", action="/nda/new")
+             input(type="hidden", name="_method", value="PUT")
+             p Disclosing Party
+              input#name(type="text", name="disclosing_party")
+             p Recipient Name
+              input#name(type="text", name="name")
+             p Business Purpose
+              input#name(type="text", name="business_purpose")
+             p Email
+              input#email(type="email", name="email")
+             p
+              input.btn.btn-primary.btn-lg(type="submit")
