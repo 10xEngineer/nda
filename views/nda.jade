@@ -10,13 +10,50 @@ block content
     .well
         form#ndaform(method="POST", action="/nda/new")
              input(type="hidden", name="_method", value="PUT")
-             p Disclosing Party
-              input#name(type="text", name="disclosing_party")
-             p Recipient Name
-              input#name(type="text", name="name")
              p Business Purpose
-              input#name(type="text", name="business_purpose")
+              input#business_purpose(type="text", name="business_purpose")
+             p Disclosing Party
+              input#discloser_party(type="text", name="disclosing_party")
+             p Disclosing Party Email
+              input#discloser_email(type="email", name="discloser_email")
+             p Disclosing Party Signature
+              .sigPad
+                ul.sigNav
+                  li.typeIt
+                    a.current(href='#type-it') Type it
+                  li.drawIt
+                    a(href='#draw-it') Draw it
+                  li.clearButton
+                    a(href='#clear') Clear
+                .sig.sigWrapper
+                  .typed
+                  canvas.pad(width='200', height='60')
+                  input#discloser_signature(type='hidden', name="discloser_signature", class="output")
+             p Recipient Name
+              input#recipient_name(type="text", name="recipient_name")
              p Email
-              input#email(type="email", name="email")
+              input#recipient_email(type="email", name="recipient_email")
+             p Recipient Signature
+               .sigPad
+                 ul.sigNav
+                   li.typeIt
+                     a.current(href='#type-it') Type it
+                   li.drawIt
+                     a(href='#draw-it') Draw it
+                   li.clearButton
+                     a(href='#clear') Clear
+                 .sig.sigWrapper
+                   .typed
+                   canvas.pad(width='200', height='60')
+                   input#recipient_signature(type='hidden', name="recipient_signature", class="output")
              p
               input.btn.btn-primary.btn-lg(type="submit")
+              
+        script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js")
+        script(src='/javascripts/jquery.signaturepad.min.js')
+        script(src='/javascripts/json2.min.js')
+        script.
+            $(document).ready(function(){
+              var api = $('.sigPad').signaturePad({drawOnly:true});
+            });
+            //script(src='/javascripts/signature.js')
